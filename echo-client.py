@@ -1,5 +1,6 @@
 from http.client import ImproperConnectionState
 import socket
+import time
 import generadormac
 import funciones_aux
 
@@ -25,8 +26,8 @@ for line in file:
     config.append(words[1])
 num_pruebas = config[0]
 file.close()
-
-for cont in num_pruebas:
+inicio = time.time()
+for cont in range(int(num_pruebas)):
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         transferencia = funciones_aux.gen_transacciones()
         s.connect((HOST, PORT))
@@ -34,6 +35,7 @@ for cont in num_pruebas:
         resultado = transferencia + "~" + str(hmac)
         s.sendall(bytes(resultado, encoding='utf8'))
         data = s.recv(1024)
-        print(transferencia)
 
     print(f"Received {data!r}")
+fin = time.time()
+print(fin-inicio)

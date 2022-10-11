@@ -22,9 +22,7 @@ def gen_transacciones():
 # Función que según probabilidad, modifica la transacción
 def gen_prueba_random(cadena):
     v = random.random()
-    print(cadena)
-    print(v)
-    if(v > 0.00005):
+    if(v > 0.65):
         x = cadena.split(" ")
         x[2] = random.randint(0,1000000)
         cadena = str(x[0]) + " " + str(x[1]) + " " + str(x[2]) + " " + str(x[3])
