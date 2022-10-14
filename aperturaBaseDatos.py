@@ -2,24 +2,21 @@ from mysql.connector import Error
 import mysql.connector
 
 try:
-    connection = mysql.connector.connect(
+    conexion = mysql.connector.connect(
         host='localhost',
-        port=3306,
+        port=3307,
         user='root',
-        password='root',
-        db='db_pai2'
+        password='ismael',
+        db='pai2'
     )
 
-    if connection.is_connected():
+    if conexion.is_connected():
         print("Conexión exitosa.")
-        infoServer = connection.get_server_info()
+        infoServer = conexion.get_server_info()
         print("Info del servidor: {}".format(infoServer))
-        cursor = connection.cursor()
+        cursor = conexion.cursor()
         cursor.execute("SELECT DATABASE()")
         row = cursor.fetchone()
         print("Conectado a la base de datos: {}".format(row))
 except Error as ex:
     print("Error durante la conexión: {}".format(ex))
-
-
-cursor = connection.cursor()
